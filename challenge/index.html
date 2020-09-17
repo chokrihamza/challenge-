@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css"/>
+    <title>Workshop -- Intro DOM</title>
+  </head>
+  <body>
+    <div id="myDIV">
+      <h2 class="title" style="margin: 5px;">My To Do List</h2>
+      <input type="text" id="myInput" placeholder="Add To Do..." />
+      <span class="addBtn">Add</span>
+    </div>
+    <ul id="myUL">
+      <!-- we are going to add the li here -->
+    </ul>
+    <div class='paragraph-div'></div>
+  </body>
+  <script>
+    let list = document.getElementById('myUL');
+let input=document.getElementById('myInput');
+let addBtn = document.getElementsByClassName('addBtn')[0];
+
+//add text
+function addToDo (){
+    // creat text node  
+    let text= document.createTextNode(input.value)
+    //create li
+    let li =document.createElement('li')
+    // append text
+    li.appendChild(text)
+    //add the li to the list 
+    if(input.value) {
+    list.appendChild(li);
+    }else { alert("Check the entry ")}
+    //clear the text
+    input.value =""
+    // add the remove button 
+    let removeBtn =document.createElement('button')
+    //add the remove button to li
+    li.appendChild(removeBtn);
+    removeBtn.innerHTML='x';
+    //remove btn
+    removeBtn.addEventListener('click', function(){
+        removeBtn.parentElement.remove();
+    })
+    // add a class to the remove btn
+    removeBtn.setAttribute('class','removeBtn')
+    
+    li.addEventListener('mouseover',function(){
+        li.style.backgroundColor='rgb(173,173,110)'
+    })
+    li.addEventListener('mouseout', function(){
+        li.style.backgroundColor="lightgray"
+    })
+}   
+addBtn.addEventListener('click',addToDo)
+
+</script>
